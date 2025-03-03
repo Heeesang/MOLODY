@@ -1,4 +1,4 @@
-import Button from "../button/mainButton";
+import Button from "../button/button";
 
 export default function MainContent() {
     return (

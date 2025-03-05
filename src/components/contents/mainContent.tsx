@@ -1,4 +1,5 @@
 import Button from "../button/button";
+import LoginModalContent from "../modal/loginModalContent";
 import Modal from "../modal/modal";
 
 export default function MainContent() {
@@ -10,10 +11,10 @@ export default function MainContent() {
             <h2 className="text-3xl font-medium mt-3 text-stone-400">음악으로 기분 좋은 하루를 시작하세요</h2>
             <div className="flex space-x-5 mt-9">
               <Modal 
-                triggerText="무료 구독하기" 
-                dialogTitle="무료 구독" 
-                dialogDescription="무료 구독을 통해 매일 새로운 음악을 받아보세요!" 
-              />
+                triggerText="무료 구독하기"  
+              >
+                <LoginModalContent />
+              </Modal>
               <Button text="음악 추천하기" href="#" />
             </div>
           </div>

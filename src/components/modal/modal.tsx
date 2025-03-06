@@ -4,6 +4,7 @@ import { useState } from "react";
 import {
   Dialog,
   DialogContent,
+  DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
 import Button from "../button/button";
@@ -20,6 +21,7 @@ export default function Modal({ triggerText, children}: {
         <Button text={triggerText} href="#" />
       </DialogTrigger>
       <DialogContent className="sm:max-w-lg">
+        <DialogTitle>무료 구독</DialogTitle>
         {children}
       </DialogContent>
     </Dialog>

@@ -9,8 +9,9 @@ import {
 } from "@/components/ui/dialog";
 import Button from "../button/button";
 
-export default function Modal({ triggerText, children}: { 
+export default function Modal({ triggerText, children, modalTitle}: { 
   triggerText: string; 
+  modalTitle: string;
   children: React.ReactNode;
 }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -21,7 +22,7 @@ export default function Modal({ triggerText, children}: {
         <Button text={triggerText} href="#" />
       </DialogTrigger>
       <DialogContent className="sm:max-w-lg">
-        <DialogTitle>무료 구독</DialogTitle>
+        <DialogTitle>{modalTitle}</DialogTitle>
         {children}
       </DialogContent>
     </Dialog>

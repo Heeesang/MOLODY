@@ -21,7 +21,7 @@ export default function Modal({ triggerText, children, modalTitle}: {
       <DialogTrigger asChild>
         <Button text={triggerText} href="#" />
       </DialogTrigger>
-      <DialogContent className="sm:max-w-lg">
+      <DialogContent className="max-w-sm">
         <DialogTitle>{modalTitle}</DialogTitle>
         {children}
       </DialogContent>

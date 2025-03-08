@@ -12,7 +12,7 @@ export default function MainContent() {
             <div className="flex space-x-5 mt-9">
               <Modal 
                 triggerText="무료 구독하기" 
-                modalTitle="무료 구독" 
+                modalTitle="이메일 등록" 
               >
                 <LoginModalContent />
               </Modal>

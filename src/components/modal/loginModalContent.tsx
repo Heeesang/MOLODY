@@ -17,9 +17,8 @@ export default function LoginModalContent() {
             redirectTo,
             scopes: 'email profile openid',
             queryParams: {
-                access_type: 'offline', // 오프라인 액세스 요청 (PKCE 유도)
-                prompt: 'consent',      // 동의 화면 강제 표시
-                response_type: 'code',  // code 반환 강제
+                access_type: 'offline',
+                prompt: 'consent',
               },
           },
         });

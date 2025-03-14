@@ -16,7 +16,6 @@ export async function GET(request: Request) {
     console.log('Session data:', data);
 
     if (!error) {
-      console.log('Redirecting to:', `${origin}`);
       return NextResponse.redirect(`${origin}`);
     } else {
       console.error('Code exchange failed:', error.message);

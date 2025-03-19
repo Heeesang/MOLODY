@@ -6,7 +6,6 @@ import { useState } from "react";
 
 export default function LoginModalContent() {
     const [loading, setLoading] = useState(false);
-    const [email, setEmail] = useState("");
     const handleLogin = async () => {
         const redirectTo = 'http://localhost:3000/auth/callback';
         console.log('Initiating OAuth with redirectTo:', redirectTo);
@@ -34,15 +33,15 @@ export default function LoginModalContent() {
     return (
       <form className="">
         <div className="flex flex-col space-y-5">
-            <input className="w-full h-11 border-2 p-3 rounded-lg"></input>
-            <button className="w-full h-12 rounded-lg bg-black text-white">확인</button>
             <button
                 type="button"
                 onClick={handleLogin}
                 disabled={loading}
-                className="px-6 py-2 text-white bg-blue-500 rounded-lg"
+                className="px-3 py-2.5 text-black font-medium border-2 rounded-lg flex text-lg items-center gap-5"
             >
-      </button>
+                <img src="./googleIcon.svg" className="w-6"/>
+                Google 계정으로 로그인
+            </button>
         </div>
       </form>
     );

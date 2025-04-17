@@ -2,7 +2,7 @@ import { supabase } from "@/lib/supabase/client";
 import { User } from "@supabase/supabase-js";
 
 export async function signInWithGoogle(): Promise<string> {
-  const redirectTo = process.env.NEXT_PUBLIC_AUTH_REDIRECT || "http://localhost:3000/auth/callback";
+  const redirectTo = process.env.NEXT_PUBLIC_AUTH_REDIRECT || "http://localhost:3000/api/auth";
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider: "google",
     options: {

@@ -20,14 +20,15 @@ export default function LoginModalContent({
   return (
     <form className="">
       <div className="flex flex-col space-y-5">
-        {user ? (
+        {loading ? (
+          <div></div>
+        ) : user ? (
           <button
             type="button"
             onClick={onSubscribe}
             disabled={loading}
             className="px-3 py-2.5 text-black font-medium border-2 rounded-lg flex text-lg items-center gap-5"
           >
-            <img src="./subscribeIcon.svg" className="w-6" alt="Subscribe icon" />
             구독하기
           </button>
         ) : (

@@ -1,5 +1,4 @@
-import Button from "../button/button";
-import LoginModalContent from "../modal/loginModalContent";
+import LoginModalContainer from "../modal/loginModalContainer";
 import Modal from "../modal/modal";
 
 export default function MainContent() {
@@ -14,13 +13,13 @@ export default function MainContent() {
                 triggerText="무료 구독하기" 
                 modalTitle="이메일 등록" 
               >
-                <LoginModalContent />
+               <LoginModalContainer/> 
               </Modal>
               <Modal 
                 triggerText="음악 추천하기" 
                 modalTitle="음악 추천" 
               >
-                <LoginModalContent />
+                <LoginModalContainer/>
               </Modal>
             </div>
           </div>

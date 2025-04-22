@@ -1,5 +1,5 @@
-import LoginModalContainer from "../modal/loginModalContainer";
-import Modal from "../modal/modal";
+import LoginModalContainer from "../../modal/loginModalContainer";
+import Modal from "../../modal/modal";
 
 export default function MainContent() {
     return (

@@ -1,6 +1,7 @@
 "use client";
 
 import { supabase } from "@/lib/supabase/client";
+import Image from "next/image";
 import { useState, useEffect } from "react";
 
 export default function Header() {
@@ -30,7 +31,13 @@ export default function Header() {
       <div className="max-w-[1140px] h-full m-auto flex">
         <div className="flex h-full w-full items-center justify-between">
           <div>
-            <img src="./molody_logo.svg" alt="Molody Logo" className="" />
+            <Image
+                src="/molody_logo.svg"
+                alt="Molody Logo"
+                width={100}
+                height={40}
+                className=""
+              />
           </div>
           <div className="flex items-center text-[#4E5968]">
             <div className="px-3">
@@ -41,10 +48,12 @@ export default function Header() {
             </div>
             {avatarUrl && (
               <div className="px-3">
-                <img
+                <Image
                   src={avatarUrl}
                   alt="Profile"
-                  className="w-10 h-10 rounded-full"
+                  width={40}
+                  height={40}
+                  className="rounded-full"
                 />
               </div>
             )}

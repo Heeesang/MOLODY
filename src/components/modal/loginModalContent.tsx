@@ -1,6 +1,7 @@
 "use client";
 
 import { User } from "@supabase/supabase-js";
+import Image from "next/image";
 
 interface LoginModalContentProps {
   user: User | null;
@@ -38,7 +39,12 @@ export default function LoginModalContent({
             disabled={loading}
             className="px-3 py-2.5 text-black font-medium border-2 rounded-lg flex text-lg items-center gap-5"
           >
-            <img src="./googleIcon.svg" className="w-6" alt="Google icon" />
+            <Image 
+              src="./googleIcon.svg"
+              alt="Google icon"
+              width={24}
+              height={24}
+            />
             Google 계정으로 로그인
           </button>
         )}

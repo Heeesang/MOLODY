@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import LoginModalContent from "./loginModalContent";
-import { useAuth } from "@/hooks/useAuth";
+import { useAuth } from "@/lib/context/authContext";
 import { signInWithGoogle, subscribeUser } from "@/services/authService";
 
 export default function LoginModalContainer() {

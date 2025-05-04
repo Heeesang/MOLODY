@@ -1,30 +1,11 @@
 "use client";
 
-import { supabase } from "@/lib/supabase/client";
+import { useAuth } from "@/lib/context/authContext";
 import Image from "next/image";
-import { useState, useEffect } from "react";
 
 export default function Header() {
-  const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
-
-  useEffect(() => {
-    const fetchUser = async () => {
-      const { data: { session } } = await supabase.auth.getSession();
-      if (session?.user) {
-        setAvatarUrl(session.user.user_metadata?.avatar_url || null);
-      }
-    };
-
-    fetchUser();
-
-    const { data: authListener } = supabase.auth.onAuthStateChange((event, session) => {
-      setAvatarUrl(session?.user?.user_metadata?.avatar_url || null);
-    });
-
-    return () => {
-      authListener.subscription.unsubscribe();
-    };
-  }, []);
+  const { user } = useAuth();
+  const avatarUrl = user?.user_metadata?.avatar_url || null;
 
   return (
     <nav className="fixed w-full text-white h-16">

@@ -1,6 +1,8 @@
 import Image from "next/image";
 import LoginModalContainer from "../../modal/loginModalContainer";
 import Modal from "../../modal/modal";
+import Button from "@/components/button/button";
+import Link from "next/link";
 
 export default function MainContent() {
     return (
@@ -16,12 +18,9 @@ export default function MainContent() {
               >
                <LoginModalContainer/> 
               </Modal>
-              <Modal 
-                triggerText="음악 추천하기" 
-                modalTitle="음악 추천" 
-              >
-                <LoginModalContainer/>
-              </Modal>
+              <Link href="/recommend">
+                <Button text="음악 추천하기"/>
+              </Link>
             </div>
           </div>
           <Image

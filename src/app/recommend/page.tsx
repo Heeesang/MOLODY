@@ -1,9 +1,9 @@
-import Header from "@/components/header/header";
+import RecommendContent from "@/components/contents/recommend/recommendContent";
 
 export default function Recommend() {
     return (
         <>
-            <Header/>
+            <RecommendContent/>
         </>
     )
 }

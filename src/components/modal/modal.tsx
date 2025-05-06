@@ -19,7 +19,7 @@ export default function Modal({ triggerText, children, modalTitle}: {
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
-        <Button text={triggerText} href="#" />
+        <Button text={triggerText}/>
       </DialogTrigger>
       <DialogContent className="max-w-xs">
         <DialogTitle>{modalTitle}</DialogTitle>

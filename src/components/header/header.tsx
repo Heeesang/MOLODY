@@ -2,23 +2,26 @@
 
 import { useAuth } from "@/lib/context/authContext";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Header() {
   const { user } = useAuth();
   const avatarUrl = user?.user_metadata?.avatar_url || null;
 
   return (
-    <nav className="fixed w-full text-white h-16">
+    <nav className="fixed w-full text-white h-16 border-b border-gray-200">
       <div className="max-w-[1140px] h-full m-auto flex">
         <div className="flex h-full w-full items-center justify-between">
           <div>
-            <Image
-                src="/molody_logo.svg"
-                alt="Molody Logo"
-                width={100}
-                height={40}
-                className=""
-              />
+            <Link href="/">
+              <Image
+                  src="/molody_logo.svg"
+                  alt="Molody Logo"
+                  width={100}
+                  height={40}
+                  className=""
+                />
+            </Link>
           </div>
           <div className="flex items-center text-[#4E5968]">
             <div className="px-3">

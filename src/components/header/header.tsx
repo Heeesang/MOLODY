@@ -28,7 +28,9 @@ export default function Header() {
               <a>무료 구독</a>
             </div>
             <div className="px-3">
-              <a>음악 추천</a>
+              <Link href="/recommend">
+                음악 추천
+              </Link>
             </div>
             {avatarUrl && (
               <div className="px-3">

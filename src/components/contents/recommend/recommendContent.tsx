@@ -1,10 +1,9 @@
 "use client";
 
-import { getYouTubeVideoInfo } from "@/lib/youtube/youtubeApi";
-import { supabase } from "@/lib/supabase/client";
 import Image from "next/image";
 import { useState } from "react";
 import { useAuth } from "@/lib/context/authContext";
+import { insertSong } from "@/lib/supabase/song/songService";
 
 export default function RecommendContent() {
     const [url, setUrl] = useState('');
@@ -22,14 +21,8 @@ export default function RecommendContent() {
                 setError("로그인이 필요합니다. Google로 로그인해 주세요.");
                 return;
             }
-
-            const videoInfo = await getYouTubeVideoInfo(url);
   
-            const { data: existingSong } = await supabase
-                .from('songs')
-                .select('id, youtube_url')
-                .eq('video_id', videoInfo.videoId)
-                .single();
+            const { existingSong } = await insertSong(url, user.id);
 
             if (existingSong) {
                 setError(
@@ -45,22 +38,6 @@ export default function RecommendContent() {
                 );
                 setLoading(false);
                 return;
-            }
-
-            const { error: songError } = await supabase
-                .from('songs')
-                .insert({
-                    youtube_url: url,
-                    video_id: videoInfo.videoId,
-                    title: videoInfo.title,
-                    thumbnail_url: videoInfo.thumbnail,
-                    user_id: user.id,
-                })
-                .select()
-                .single();
-
-            if (songError) {
-                throw songError;
             }
 
             setUrl('');

@@ -42,7 +42,7 @@ export default function RecommendContent() {
 
             setUrl('');
         } catch (err) {
-            setError('노래 등록 실패: ' + (err as Error).message);
+            setError((err as Error).message);
         } finally {
             setLoading(false);
         }
@@ -54,24 +54,26 @@ export default function RecommendContent() {
                 <div className="h-9/12 flex flex-col">
                     <h1 className="text-2xl font-bold mb-3">최근 추천 음악</h1>
                 </div>
-                <div className="border border-gray-200 rounded-lg w-96 h-9/12 flex flex-col justify-end items-center">
-                    <form onSubmit={handleSubmit} className="mb-6">
-                        <input
-                            type="text"
-                            value={url}
-                            onChange={(e) => setUrl(e.target.value)}
-                            placeholder="YouTube URL 입력 (예: https://youtu.be/dQw4w9WgXcQ)"
-                            className="border p-2 rounded w-full mb-2 text-black"
-                            disabled={loading}
-                        />
-                        <button
-                            type="submit"
-                            className="bg-blue-500 text-white p-2 rounded hover:bg-blue-600 disabled:bg-gray-400"
-                            disabled={loading}
-                        >
-                            {loading ? '확인 중...' : '확인'}
-                        </button>
-                        {error && <div className="text-red-500 mt-2">{error}</div>}
+                <div className="border border-gray-200 rounded-lg w-96 h-9/12 flex flex-col justify-between items-center">
+                    <form onSubmit={handleSubmit} className="mt-14 w-full">
+                        <div className="flex flex-col items-center">
+                            <input
+                                type="text"
+                                value={url}
+                                onChange={(e) => setUrl(e.target.value)}
+                                placeholder="YouTube URL 입력 (예: https://youtu.be/dQw4w9WgXcQ)"
+                                className="border px-2 py-3 rounded w-4/5 mb-2 text-black"
+                                disabled={loading}
+                            />
+                            <button
+                                type="submit"
+                                className="bg-black text-white px-2 py-3 w-4/5 rounded hover:bg-gray-800 disabled:bg-gray-400"
+                                disabled={loading}
+                            >
+                                {loading ? '확인 중...' : '확인'}
+                            </button>
+                            {error && <div className="text-red-500 mt-2">{error}</div>}
+                        </div>
                     </form>
                     <Image
                         src="/molody_logo.svg"

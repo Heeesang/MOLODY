@@ -2,12 +2,12 @@
 import { supabase } from "@/lib/supabase/client";
 import { getYouTubeVideoInfo } from "@/lib/youtube/youtubeApi";
 
-interface SongData {
+export interface SongData {
   youtube_url: string;
-  video_id: string;
+  video_id?: string;
   title: string;
   thumbnail_url: string;
-  user_id: string;
+  user_id?: string;
 }
 
 async function checkExistingSong(videoId: string) {
@@ -52,3 +52,17 @@ export async function insertSong(url: string, userId: string) {
 
   return { existingSong: null, data };
 }
+
+export async function getLatestSongs(limit: number = 5): Promise<SongData[]> {
+    const { data, error } = await supabase
+      .from("songs")
+      .select("video_id, title, thumbnail_url, youtube_url")
+      .order("created_at", { ascending: false })
+      .limit(limit);
+  
+    if (error) {
+      throw new Error(`노래 조회 실패: ${error.message}`);
+    }
+  
+    return data;
+  }

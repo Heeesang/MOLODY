@@ -9,7 +9,7 @@ export default function Header() {
   const avatarUrl = user?.user_metadata?.avatar_url || null;
 
   return (
-    <nav className="fixed w-full text-white h-16 border-b border-gray-200">
+    <nav className="fixed w-full text-white h-16 bg-white">
       <div className="max-w-[1140px] h-full m-auto flex">
         <div className="flex h-full w-full items-center justify-between">
           <div>
@@ -17,9 +17,8 @@ export default function Header() {
               <Image
                   src="/molody_logo.svg"
                   alt="Molody Logo"
-                  width={100}
-                  height={40}
-                  className=""
+                  width={90}
+                  height={30}
                 />
             </Link>
           </div>

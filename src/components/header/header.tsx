@@ -9,7 +9,7 @@ export default function Header() {
   const avatarUrl = user?.user_metadata?.avatar_url || null;
 
   return (
-    <nav className="fixed w-full text-white h-16 bg-white">
+    <nav className="fixed w-full h-16 bg-white">
       <div className="max-w-[1140px] h-full m-auto flex">
         <div className="flex h-full w-full items-center justify-between">
           <div>
@@ -22,9 +22,9 @@ export default function Header() {
                 />
             </Link>
           </div>
-          <div className="flex items-center text-[#4E5968]">
+          <div className="flex items-center text-neutral-500">
             <div className="px-3">
-              <a>무료 구독</a>
+              <a className="font-normal">무료 구독</a>
             </div>
             <div className="px-3">
               <Link href="/recommend">

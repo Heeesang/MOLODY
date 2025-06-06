@@ -53,7 +53,7 @@ export async function insertSong(url: string, userId: string) {
   return { existingSong: null, data };
 }
 
-export async function getLatestSongs(limit: number = 5): Promise<SongData[]> {
+export async function getLatestSongs(limit: number = 10): Promise<SongData[]> {
     const { data, error } = await supabase
       .from("songs")
       .select("video_id, title, thumbnail_url, youtube_url")

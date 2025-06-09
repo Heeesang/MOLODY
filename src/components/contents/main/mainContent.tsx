@@ -1,5 +1,5 @@
 import Image from "next/image";
-import LoginModalContainer from "../../modal/loginModalContainer";
+import LoginModalContainer from "../../modal/login/loginModalContainer";
 import Modal from "../../modal/modal";
 import Button from "@/components/button/button";
 import Link from "next/link";

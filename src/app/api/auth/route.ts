@@ -22,6 +22,7 @@ export async function GET(request: Request) {
   } else {
     console.error('No code provided in callback');
   }
+  
 
   return NextResponse.redirect(`${origin}/auth/auth-code-error`);
 }

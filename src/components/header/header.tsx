@@ -1,12 +1,9 @@
-"use client";
-
-import { useAuth } from "@/lib/context/authContext";
+import { getUser } from "@/lib/supabase/server";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function Header() {
-  const { user } = useAuth();
-  const avatarUrl = user?.user_metadata?.avatar_url || null;
+export default async function Header() {
+  const user = await getUser();
 
   return (
     <nav className="fixed w-full h-16 bg-white">
@@ -31,10 +28,10 @@ export default function Header() {
                 음악 추천
               </Link>
             </div>
-            {avatarUrl && (
+            {user && (
               <div className="px-3">
                 <Image
-                  src={avatarUrl}
+                  src={user?.user_metadata.avatar_url}
                   alt="Profile"
                   width={40}
                   height={40}

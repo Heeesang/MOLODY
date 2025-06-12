@@ -3,8 +3,11 @@ import LoginModalContainer from "../../modal/login/loginModalContainer";
 import Modal from "../../modal/modal";
 import Button from "@/components/button/button";
 import Link from "next/link";
+import { getUser } from "@/lib/supabase/server";
 
-export default function MainContent() {
+export default async function MainContent() {
+    const user = await getUser()
+    
     return (
       <div className="h-dvh flex justify-center">
         <div className="flex flex-col items-center pt-44 max-w-[1140px]">
@@ -16,7 +19,7 @@ export default function MainContent() {
                 triggerText="무료 구독하기" 
                 modalTitle="이메일 등록" 
               >
-               <LoginModalContainer/> 
+               <LoginModalContainer user={user} /> 
               </Modal>
               <Link href="/recommend">
                 <Button text="음악 추천하기"/>

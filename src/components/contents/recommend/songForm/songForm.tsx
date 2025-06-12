@@ -2,13 +2,12 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import { insertSong } from '@/lib/supabase/song/songService';
-import { useAuth } from '@/lib/context/authContext';
+import { User } from '@supabase/supabase-js';
 
-export default function SongForm() {
+export default function SongForm({user}: {user: User | null}) {
   const [url, setUrl] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<React.ReactNode | null>(null);
-  const { user } = useAuth();
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -41,7 +40,7 @@ export default function SongForm() {
 
       setUrl('');
     } catch (err) {
-      setError((err as Error).message);
+      setError(`오류: ${(err as Error).message}`);
     } finally {
       setLoading(false);
     }

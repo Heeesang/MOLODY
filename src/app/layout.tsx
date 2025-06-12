@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 import "./styles/globals.css"
-import { createClient } from "@/lib/supabase/server";
-import { AuthProvider } from "@/lib/context/authContext";
 import Header from "@/components/header/header";
 
 export const metadata: Metadata = {
@@ -14,16 +12,12 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const supabase = await createClient();
-  const { data: { user } } = await supabase.auth.getUser();
 
   return (
     <html lang="en">
       <body>
-        <AuthProvider initialUser={user}>
           <Header/>
           {children}
-        </AuthProvider>
       </body>
     </html>
   );

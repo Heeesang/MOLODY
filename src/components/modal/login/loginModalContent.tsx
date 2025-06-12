@@ -5,7 +5,6 @@ import Image from "next/image";
 
 interface LoginModalContentProps {
   user: User | null;
-  loading: boolean;
   message: string;
   onLogin: () => void;
   onSubscribe: () => void;
@@ -13,7 +12,6 @@ interface LoginModalContentProps {
 
 export default function LoginModalContent({
   user,
-  loading,
   message,
   onLogin,
   onSubscribe,
@@ -21,13 +19,10 @@ export default function LoginModalContent({
   return (
     <form className="">
       <div className="flex flex-col space-y-5">
-        {loading ? (
-          <div></div>
-        ) : user ? (
+        {user ? (
           <button
             type="button"
             onClick={onSubscribe}
-            disabled={loading}
             className="px-3 py-2.5 text-black font-medium border-2 rounded-lg flex text-lg items-center gap-5"
           >
             구독하기
@@ -36,7 +31,6 @@ export default function LoginModalContent({
           <button
             type="button"
             onClick={onLogin}
-            disabled={loading}
             className="px-3 py-2.5 text-black font-medium border-2 rounded-lg flex text-lg items-center gap-5"
           >
             <Image 

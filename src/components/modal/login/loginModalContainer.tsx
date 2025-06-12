@@ -1,12 +1,10 @@
 "use client";
-
 import { useState } from "react";
 import LoginModalContent from "./loginModalContent";
-import { useAuth } from "@/lib/context/authContext";
 import { signInWithGoogle, subscribeUser } from "@/services/authService";
+import { User } from "@supabase/supabase-js";
 
-export default function LoginModalContainer() {
-  const { user, loading } = useAuth();
+export default function LoginModalContainer({user}: {user: User | null}) {
   const [message, setMessage] = useState<string>("");
 
   const handleLogin = async (): Promise<void> => {
@@ -31,7 +29,6 @@ export default function LoginModalContainer() {
   return (
     <LoginModalContent
       user={user}
-      loading={loading}
       message={message}
       onLogin={handleLogin}
       onSubscribe={handleSubscribe}

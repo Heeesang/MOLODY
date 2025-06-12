@@ -1,8 +1,11 @@
 import { Suspense } from 'react';
 import SongList from './songList.tsx/songList';
 import SongForm from './songForm/songForm';
+import { getUser } from '@/lib/supabase/server';
 
 export default async function Recommend() {
+    const user = await getUser();
+
     return (
         <div className="flex flex-col items-center justify-center w-full h-dvh">
             <div className="flex max-w-[1140px] w-full h-full justify-between items-center">
@@ -12,7 +15,7 @@ export default async function Recommend() {
                         <SongList />
                     </Suspense>
                 </div>
-                <SongForm />
+                <SongForm user={user} />
             </div>
         </div>
     );

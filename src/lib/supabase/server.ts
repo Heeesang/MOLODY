@@ -1,6 +1,7 @@
 import { createServerClient } from '@supabase/ssr'
 import { User } from '@supabase/supabase-js'
 import { cookies } from 'next/headers'
+import { SongData } from './song/songService'
 
 export async function createClient() {
   const cookieStore = await cookies()
@@ -36,4 +37,19 @@ export async function getUser(): Promise<User | null> {
     return null
   }
   return user
+}
+
+export async function getLatestSongs(limit: number = 10): Promise<SongData[]> {
+  const supabase = await createClient()
+  const { data, error } = await supabase
+    .from("songs")
+    .select("video_id, title, thumbnail_url, youtube_url")
+    .order("created_at", { ascending: false })
+    .limit(limit);
+
+  if (error) {
+    throw new Error(`노래 조회 실패: ${error.message}`);
+  }
+
+  return data;
 }

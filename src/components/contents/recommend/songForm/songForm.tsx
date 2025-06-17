@@ -40,7 +40,7 @@ export default function SongForm({user}: {user: User | null}) {
 
       setUrl('');
     } catch (err) {
-      setError(`오류: ${(err as Error).message}`);
+      setError((err as Error).message);
     } finally {
       setLoading(false);
     }

@@ -1,4 +1,5 @@
-import { getLatestSongs, SongData } from '@/lib/supabase/song/songService';
+import { getLatestSongs } from '@/lib/supabase/server';
+import { SongData } from '@/lib/supabase/song/songService';
 import Image from 'next/image';
 
 export default async function SongList() {

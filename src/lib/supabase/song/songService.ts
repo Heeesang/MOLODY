@@ -1,4 +1,3 @@
-// lib/supabase/songService.ts
 import { supabase } from "@/lib/supabase/client";
 import { getYouTubeVideoInfo } from "@/lib/youtube/youtubeApi";
 
@@ -52,17 +51,3 @@ export async function insertSong(url: string, userId: string) {
 
   return { existingSong: null, data };
 }
-
-export async function getLatestSongs(limit: number = 10): Promise<SongData[]> {
-    const { data, error } = await supabase
-      .from("songs")
-      .select("video_id, title, thumbnail_url, youtube_url")
-      .order("created_at", { ascending: false })
-      .limit(limit);
-  
-    if (error) {
-      throw new Error(`노래 조회 실패: ${error.message}`);
-    }
-  
-    return data;
-  }

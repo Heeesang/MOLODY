@@ -5,7 +5,6 @@ import { getUser } from '@/lib/supabase/server';
 
 export default async function Recommend() {
     const user = await getUser();
-
     return (
         <div className="flex flex-col items-center justify-center w-full h-dvh">
             <div className="flex max-w-[1140px] w-full h-full justify-between items-center">

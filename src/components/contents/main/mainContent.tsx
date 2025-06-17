@@ -16,7 +16,7 @@ export default async function MainContent() {
             <h2 className="text-3xl font-medium mt-3 text-stone-400">음악으로 기분 좋은 하루를 시작하세요</h2>
             <div className="flex space-x-5 mt-9">
               <Modal 
-                triggerText="무료 구독하기" 
+                trigger={<Button text="무료구독하기"/>}
                 modalTitle="이메일 등록" 
               >
                <LoginModalContainer user={user} /> 

@@ -1,6 +1,10 @@
 import { getUser } from "@/lib/supabase/server";
 import Image from "next/image";
 import Link from "next/link";
+import LogoutButton from "../button/logoutButton";
+import LoginButton from "../button/loginButton";
+import Modal from "../modal/modal";
+import LoginModalContainer from "../modal/login/loginModalContainer";
 
 export default async function Header() {
   const user = await getUser();
@@ -12,31 +16,40 @@ export default async function Header() {
           <div>
             <Link href="/">
               <Image
-                  src="/molody_logo.svg"
-                  alt="Molody Logo"
-                  width={90}
-                  height={30}
-                />
+                src="/molody_logo.svg"
+                alt="Molody Logo"
+                width={90}
+                height={30}
+              />
             </Link>
           </div>
           <div className="flex items-center text-neutral-500">
-            <div className="px-3">
-              <a className="font-normal">무료 구독</a>
-            </div>
-            <div className="px-3">
+            <div className="mx-6">
               <Link href="/recommend">
                 음악 추천
               </Link>
             </div>
-            {user && (
-              <div className="px-3">
-                <Image
-                  src={user?.user_metadata.avatar_url}
-                  alt="Profile"
-                  width={40}
-                  height={40}
-                  className="rounded-full"
-                />
+            {user ? (
+              <div className="flex items-center">
+                <LogoutButton/>
+                <div className="pl-2">
+                  <Image
+                    src={user?.user_metadata.avatar_url}
+                    alt="Profile"
+                    width={40}
+                    height={40}
+                    className="rounded-full"
+                  />
+                </div>
+              </div>
+            ) : (
+              <div className="flex items-center">
+                <Modal
+                  trigger={<LoginButton />}
+                  modalTitle="로그인"
+                >
+                  <LoginModalContainer user={user} />
+                </Modal>
               </div>
             )}
           </div>

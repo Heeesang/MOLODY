@@ -1,5 +1,4 @@
 "use client";
-
 import { useState } from "react";
 import {
   Dialog,
@@ -7,10 +6,13 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import Button from "../button/button";
 
-export default function Modal({ triggerText, children, modalTitle}: { 
-  triggerText: string; 
+export default function Modal({
+  trigger,
+  children,
+  modalTitle,
+}: {
+  trigger: React.ReactNode;
   modalTitle: string;
   children: React.ReactNode;
 }) {
@@ -18,9 +20,7 @@ export default function Modal({ triggerText, children, modalTitle}: {
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <DialogTrigger asChild>
-        <Button text={triggerText}/>
-      </DialogTrigger>
+      <DialogTrigger asChild>{trigger}</DialogTrigger>
       <DialogContent className="max-w-xs">
         <DialogTitle>{modalTitle}</DialogTitle>
         {children}

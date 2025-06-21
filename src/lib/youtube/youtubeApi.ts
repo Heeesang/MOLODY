@@ -15,7 +15,6 @@ export async function getYouTubeVideoInfo(url: string) {
       thumbnail: video.snippet.thumbnails.medium.url,
     };
   } catch (error) {
-    console.error('YouTube 비디오 정보 오류:', (error as Error).message);
     throw error;
   }
 }

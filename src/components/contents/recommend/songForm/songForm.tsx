@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import { useState } from 'react';
 import Image from 'next/image';
 import { insertSong } from '@/lib/supabase/song/songService';
@@ -23,17 +23,8 @@ export default function SongForm({user}: {user: User | null}) {
       const { existingSong } = await insertSong(url, user.id);
 
       if (existingSong) {
-        setError(
-          <div>
-            <p>이미 등록된 YouTube 영상입니다: <a href={existingSong.youtube_url} target="_blank" className="text-blue-500 underline">{existingSong.youtube_url}</a></p>
-            <button
-              onClick={() => setUrl('')}
-              className="bg-red-500 text-white p-2 rounded mt-2"
-            >
-              취소
-            </button>
-          </div>
-        );
+        setError("이미 등록된 YouTube 영상입니다.");
+        setUrl('');
         setLoading(false);
         return;
       }

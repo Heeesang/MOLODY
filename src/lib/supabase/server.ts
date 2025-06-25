@@ -2,7 +2,6 @@ import { createServerClient } from '@supabase/ssr'
 import { User } from '@supabase/supabase-js'
 import { cookies } from 'next/headers'
 import { SongData } from './song/songService'
-import { availableMoods } from '@/schemas/songSchema'
 
 export async function createClient() {
   const cookieStore = await cookies()
@@ -44,7 +43,7 @@ export async function getLatestSongs(limit: number = 10): Promise<SongData[]> {
   const supabase = await createClient()
   const { data, error } = await supabase
     .from("songs")
-    .select("video_id, title, thumbnail_url, youtube_url")
+    .select("video_id, title, thumbnail_url, youtube_url, genre")
     .order("created_at", { ascending: false })
     .limit(limit);
 
@@ -52,8 +51,5 @@ export async function getLatestSongs(limit: number = 10): Promise<SongData[]> {
     throw new Error(`노래 조회 실패: ${error.message}`);
   }
 
-  return data.map((song) => ({
-    ...song,
-    moods: [availableMoods[Math.floor(Math.random() * availableMoods.length)]], // 1개만
-  }));
+  return data || [];
 }

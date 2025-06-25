@@ -1,16 +1,21 @@
 "use client";
 import { useSongForm } from '@/hooks/useSongForm';
-import { availableMoods, moodColors } from '@/schemas/songSchema';
+import { availableGenre, Genre, genreColors } from '@/schemas/songSchema';
 import { User } from '@supabase/supabase-js';
 import Image from 'next/image';
 
 export default function SongForm({ user }: { user: User | null }) {
-  const { register, handleSubmit, errors, isSubmitting, serverError, onSubmit } = useSongForm(user);
+  const { register, handleSubmit, errors, isSubmitting, serverError, onSubmit, setValue, watch } = useSongForm(user);
+  const selectedGenre = watch('genre');
+
+  const selectGenre = (genre: Genre) => {
+    setValue('genre', genre, { shouldValidate: true });
+  };
 
   return (
     <div className="bg-white border border-gray-200 rounded-lg w-96 h-9/12">
       <div className="flex flex-col justify-between items-center h-full w-full">
-        <form onSubmit={handleSubmit(onSubmit)} className="w-full h-full flex flex-col">
+        <form onSubmit={handleSubmit((data) => onSubmit({ ...data, genre: selectedGenre }))} className="w-full h-full flex flex-col">
           <div className="w-full my-6 flex flex-col items-center">
             <div className='w-4/5'>
               <p className="text-sm font-semibold mb-3 text-gray-700">URL 입력</p>
@@ -20,22 +25,27 @@ export default function SongForm({ user }: { user: User | null }) {
                 className="border border-gray-200 px-2 py-3 w-full rounded mb-2 text-black"
                 disabled={isSubmitting || !user}
               />
+              {errors.url && <div className="text-red-500 text-sm">{errors.url.message}</div>}
             </div>
             <div className="w-4/5 my-6">
               <p className="text-sm font-semibold mb-3 text-gray-700">분위기 선택</p>
               <div className="flex flex-wrap gap-2">
-                {availableMoods.map((mood) => (
+                {availableGenre.map((genre) => (
                   <button
-                    key={mood}
+                    key={genre}
                     type="button"
-                    className={`px-4 py-1 rounded-lg text-sm text-neutral-400 font-normal border duration-200 ${moodColors[mood].base} hover:text-neutral-800
-                    ${isSubmitting || !user ? 'opacity-50 cursor-not-allowed' : ''}`}
+                    onClick={() => selectGenre(genre)}
+                    className={`px-4 py-1 rounded-lg text-sm font-normal border duration-200 
+                      ${genreColors[genre].base} 
+                      ${selectedGenre === genre ? `text-neutral-800 ${genreColors[genre].selected}` : 'text-neutral-400'} 
+                      hover:text-neutral-800 ${isSubmitting || !user ? 'opacity-70 cursor-not-allowed' : ''}`}
                     disabled={isSubmitting || !user}
                   >
-                    {mood.charAt(0).toUpperCase() + mood.slice(1)}
+                    {genre.charAt(0).toUpperCase() + genre.slice(1)}
                   </button>
                 ))}
               </div>
+              {errors.genre && <div className="text-red-500 text-sm mt-2">{errors.genre.message}</div>}
             </div>
 
             <button
@@ -45,7 +55,6 @@ export default function SongForm({ user }: { user: User | null }) {
             >
               {isSubmitting ? '확인 중...' : user === null ? '로그인 후 이용 가능' : '확인'}
             </button>
-            {errors.url && <div className="text-red-500 mt-2">{errors.url.message}</div>}
             {serverError && <div className="text-red-500 mt-2">{serverError}</div>}
             <div className="flex w-4/5">
               <p className="text-xs text-gray-400 mt-4">

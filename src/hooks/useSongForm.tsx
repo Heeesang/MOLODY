@@ -13,9 +13,11 @@ export function useSongForm(user: User | null) {
         handleSubmit,
         formState: { errors, isSubmitting },
         reset,
+        setValue,
+        watch,
     } = useForm<SongFormData>({
         resolver: zodResolver(songSchema),
-        defaultValues: { url: '' },
+        defaultValues: { url: '', genre: '팝' },
     });
 
     const onSubmit = async (data: SongFormData) => {
@@ -26,7 +28,7 @@ export function useSongForm(user: User | null) {
         }
 
         try {
-            const { existingSong } = await insertSong(data.url, user.id);
+            const { existingSong } = await insertSong(data.url, user.id, data.genre);
             if (existingSong) {
                 setServerError("이미 등록된 YouTube 영상입니다.");
                 reset();
@@ -38,5 +40,5 @@ export function useSongForm(user: User | null) {
         }
     };
 
-    return { register, handleSubmit, errors, isSubmitting, serverError, onSubmit };
+    return { register, handleSubmit, errors, isSubmitting, serverError, onSubmit, setValue, watch };
 }

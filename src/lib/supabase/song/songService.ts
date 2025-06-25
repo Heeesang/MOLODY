@@ -7,7 +7,7 @@ export interface SongData {
   title: string;
   thumbnail_url: string;
   user_id?: string;
-  moods: string[];
+  genre: string;
 }
 
 async function checkExistingSong(videoId: string) {
@@ -24,7 +24,7 @@ async function checkExistingSong(videoId: string) {
   return data;
 }
 
-export async function insertSong(url: string, userId: string) {
+export async function insertSong(url: string, userId: string, genre: string) {
   const videoInfo = await getYouTubeVideoInfo(url);
   const existingSong = await checkExistingSong(videoInfo.videoId);
 
@@ -38,7 +38,7 @@ export async function insertSong(url: string, userId: string) {
     title: videoInfo.title,
     thumbnail_url: videoInfo.thumbnail,
     user_id: userId,
-    moods: [],
+    genre: genre
   };
 
   const { data, error } = await supabase

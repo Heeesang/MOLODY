@@ -1,5 +1,6 @@
 "use client";
 import { useSongForm } from '@/hooks/useSongForm';
+import { availableMoods, moodColors } from '@/schemas/songSchema';
 import { User } from '@supabase/supabase-js';
 import Image from 'next/image';
 
@@ -9,17 +10,37 @@ export default function SongForm({ user }: { user: User | null }) {
   return (
     <div className="bg-white border border-gray-200 rounded-lg w-96 h-9/12">
       <div className="flex flex-col justify-between items-center h-full w-full">
-        <form onSubmit={handleSubmit(onSubmit)} className="w-full h-full">
-          <div className="flex flex-col items-center mt-14">
-            <input
-              {...register('url')}
-              placeholder="YouTube URL 입력"
-              className="border border-gray-200 px-2 py-3 rounded w-4/5 mb-2 text-black"
-              disabled={isSubmitting || !user}
-            />
+        <form onSubmit={handleSubmit(onSubmit)} className="w-full h-full flex flex-col">
+          <div className="w-full my-6 flex flex-col items-center">
+            <div className='w-4/5'>
+              <p className="text-sm font-semibold mb-3 text-gray-700">URL 입력</p>
+              <input
+                {...register('url')}
+                placeholder="YouTube URL 입력"
+                className="border border-gray-200 px-2 py-3 w-full rounded mb-2 text-black"
+                disabled={isSubmitting || !user}
+              />
+            </div>
+            <div className="w-4/5 my-6">
+              <p className="text-sm font-semibold mb-3 text-gray-700">분위기 선택</p>
+              <div className="flex flex-wrap gap-2">
+                {availableMoods.map((mood) => (
+                  <button
+                    key={mood}
+                    type="button"
+                    className={`px-4 py-1 rounded-lg text-sm text-neutral-400 font-normal border duration-200 ${moodColors[mood].base} hover:text-neutral-800
+                    ${isSubmitting || !user ? 'opacity-50 cursor-not-allowed' : ''}`}
+                    disabled={isSubmitting || !user}
+                  >
+                    {mood.charAt(0).toUpperCase() + mood.slice(1)}
+                  </button>
+                ))}
+              </div>
+            </div>
+
             <button
               type="submit"
-              className="bg-black text-white px-2 py-3 w-4/5 rounded hover:bg-neutral-700 disabled:bg-neutral-400"
+              className="bg-black mt-2 text-white px-2 py-3 w-4/5 rounded hover:bg-neutral-700 disabled:bg-neutral-400"
               disabled={isSubmitting || !user}
             >
               {isSubmitting ? '확인 중...' : user === null ? '로그인 후 이용 가능' : '확인'}

@@ -7,6 +7,7 @@ export interface SongData {
   title: string;
   thumbnail_url: string;
   user_id?: string;
+  moods: string[];
 }
 
 async function checkExistingSong(videoId: string) {
@@ -37,6 +38,7 @@ export async function insertSong(url: string, userId: string) {
     title: videoInfo.title,
     thumbnail_url: videoInfo.thumbnail,
     user_id: userId,
+    moods: [],
   };
 
   const { data, error } = await supabase

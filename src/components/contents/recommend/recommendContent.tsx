@@ -8,7 +8,7 @@ export default async function Recommend() {
     return (
         <div className="flex flex-col items-center justify-center w-full h-dvh">
             <div className="flex max-w-[1140px] w-full h-full justify-between items-center">
-                <div className="h-9/12 flex flex-col">
+                <div className="h-9/12 w-3/5 flex flex-col">
                     <h1 className="text-4xl font-bold mb-3 text-neutral-700">추천음악</h1>
                     <Suspense fallback={<SkeletonLoader />}>
                         <SongList />

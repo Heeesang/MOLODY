@@ -14,8 +14,8 @@ export default async function SongList() {
                                 src={song.thumbnail_url}
                                 alt={song.title}
                                 width={106}
-                                height={76}
-                                className="rounded"
+                                height={60}
+                                className="rounded object-cover"
                                 priority
                             />
                             <a

@@ -13,7 +13,7 @@ export default function SongForm({ user }: { user: User | null }) {
   };
 
   return (
-    <div className="bg-white border border-gray-200 rounded-lg w-96 h-9/12">
+    <div className="bg-white border border-gray-200 rounded-lg w-96 h-[750px]">
       <div className="flex flex-col justify-between items-center h-full w-full">
         <form onSubmit={handleSubmit((data) => onSubmit({ ...data, genre: selectedGenre }))} className="w-full h-full flex flex-col">
           <div className="w-full my-6 flex flex-col items-center">

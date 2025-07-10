@@ -54,10 +54,3 @@ export async function insertSong(url: string, userId: string, genre: string) {
   return { existingSong: null, data };
 }
 
-export async function signOut(): Promise<void> {
-  const { error } = await supabase.auth.signOut();
-
-  if (error) {
-    throw new Error(`Logout failed: ${error.message}`);
-  }
-}

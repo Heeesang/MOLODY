@@ -47,7 +47,6 @@ export default function SongForm({ user }: { user: User | null }) {
               </div>
               {errors.genre && <div className="text-red-500 text-sm mt-2">{errors.genre.message}</div>}
             </div>
-
             <button
               type="submit"
               className="bg-black mt-2 text-white px-2 py-3 w-4/5 rounded hover:bg-neutral-700 disabled:bg-neutral-400"

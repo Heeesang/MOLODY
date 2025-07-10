@@ -34,3 +34,11 @@ export async function subscribeUser(user: User): Promise<void> {
     throw new Error(`Subscription failed: ${error.message}`);
   }
 }
+
+export async function signOut(): Promise<void> {
+  const { error } = await supabase.auth.signOut();
+
+  if (error) {
+    throw new Error(`Logout failed: ${error.message}`);
+  }
+}

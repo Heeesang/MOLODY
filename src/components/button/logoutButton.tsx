@@ -1,5 +1,5 @@
 "use client";
-import { signOut } from "@/lib/supabase/song/songService";
+import { signOut } from "@/services/authService";
 import { useRouter } from "next/navigation";
 
 export default function LogoutButton() {

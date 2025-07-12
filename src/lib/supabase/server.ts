@@ -39,13 +39,19 @@ export async function getUser(): Promise<User | null> {
   return user
 }
 
-export async function getLatestSongs(limit: number = 10): Promise<SongData[]> {
+export async function getLatestSongs(limit: number = 10, genre?: string): Promise<SongData[]> {
   const supabase = await createClient()
-  const { data, error } = await supabase
+  let query = supabase
     .from("songs")
     .select("video_id, title, thumbnail_url, youtube_url, genre")
     .order("created_at", { ascending: false })
     .limit(limit);
+
+  if (genre) {
+    query = query.eq('genre', genre);
+  }
+
+  const { data, error } = await query;
 
   if (error) {
     throw new Error(`노래 조회 실패: ${error.message}`);

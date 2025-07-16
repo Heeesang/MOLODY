@@ -22,7 +22,7 @@ export async function insertSongAction(
     });
 
     if (!parsedData.success) {
-        return { error: "유효하지 않은 입력입니다. URL과 장르를 확인해 주세요." };
+        return { error: "URL과 장르를 확인해 주세요." };
     }
 
     const { url, genre } = parsedData.data;

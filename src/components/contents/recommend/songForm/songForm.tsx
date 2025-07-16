@@ -19,12 +19,10 @@ export default function SongForm({ user }: { user: User | null }) {
             <div className="w-4/5">
               <p className="text-sm font-semibold mb-3 text-gray-700">URL 입력</p>
               <input
-                type="url"
                 name="url"
                 placeholder="YouTube URL 입력"
                 className="border border-gray-200 px-2 py-3 w-full rounded mb-2 text-black"
                 disabled={user === null}
-                required
               />
             </div>
             <div className="w-4/5 my-6">

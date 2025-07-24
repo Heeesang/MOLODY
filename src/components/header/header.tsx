@@ -10,7 +10,7 @@ export default async function Header() {
   const user = await getUser();
 
   return (
-    <nav className="fixed w-full h-16 bg-white">
+    <nav className="fixed w-full h-16 bg-white px-5">
       <div className="max-w-[1140px] h-full m-auto flex">
         <div className="flex h-full w-full items-center justify-between">
           <div>

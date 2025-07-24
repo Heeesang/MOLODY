@@ -14,7 +14,7 @@ export default async function SongList({ genre }: { genre?: string }) {
                 </Link>
                 {availableGenre.map((g) => (
                     <Link key={g} href={`/recommend?genre=${encodeURIComponent(g)}`}>
-                        <button className={`px-3 py-1 rounded-lg text-sm ${genre === g ? 'bg-neutral-700 text-white' : 'bg-neutral-200 text-neutral-700'}`}>{g}</button>
+                        <button className={`px-2 py-1 rounded-lg text-sm ${genre === g ? 'bg-neutral-700 text-white' : 'bg-neutral-200 text-neutral-700'}`}>{g}</button>
                     </Link>
                 ))}
             </div>
@@ -43,7 +43,7 @@ export default async function SongList({ genre }: { genre?: string }) {
                             <div className="mr-4">
                                 <span
                                     key={song.genre}
-                                    className="px-2 py-1 rounded-sm text-xs bg-neutral-100 text-neutral-400"
+                                    className="hidden px-2 py-1 md:block rounded-sm text-xs bg-neutral-100 text-neutral-400"
                                 >
                                     {song.genre}
                                 </span>

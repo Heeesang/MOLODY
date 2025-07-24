@@ -12,11 +12,11 @@ export default function SongForm({ user }: { user: User | null }) {
   const [selectedGenre, setSelectedGenre] = useState<Genre>("팝");
 
   return (
-    <div className="bg-white border border-gray-200 rounded-lg w-96 h-[750px]">
-      <div className="flex flex-col justify-between items-center h-full w-full">
+    <div className="bg-white border border-gray-200 rounded-lg w-full lg:h-[750px]">
+      <div className="flex flex-col justify-between items-center h-full w-full px-5">
         <form action={formAction} className="w-full h-full flex flex-col">
           <div className="w-full my-6 flex flex-col items-center">
-            <div className="w-4/5">
+            <div className="w-full">
               <p className="text-sm font-semibold mb-3 text-gray-700">URL 입력</p>
               <input
                 name="url"
@@ -25,7 +25,7 @@ export default function SongForm({ user }: { user: User | null }) {
                 disabled={user === null}
               />
             </div>
-            <div className="w-4/5 my-6">
+            <div className="w-full my-6">
               <p className="text-sm font-semibold mb-3 text-gray-700">분위기 선택</p>
               <div className="flex flex-wrap gap-2">
                 {availableGenre.map((genre) => (
@@ -33,7 +33,7 @@ export default function SongForm({ user }: { user: User | null }) {
                     key={genre}
                     type="button"
                     onClick={() => setSelectedGenre(genre)}
-                    className={`px-4 py-1 rounded-lg text-sm font-normal border duration-200 
+                    className={`px-3 py-1 rounded-lg text-sm font-normal border duration-200 
                       ${genreColors[genre].base} 
                       ${selectedGenre === genre ? `text-neutral-800 ${genreColors[genre].selected}` : 'text-neutral-400'} 
                       hover:text-neutral-800 ${user === null ? 'opacity-70 cursor-not-allowed' : ''}`}
@@ -47,7 +47,7 @@ export default function SongForm({ user }: { user: User | null }) {
             </div>
             <SubmitButton user={user} />
             {state.error && <div className="text-red-500 mt-2">{state.error}</div>}
-            <div className="flex w-4/5">
+            <div className="w-full">
               <p className="text-xs text-gray-400 mt-4">
                 *음악이 아닌 URL을 공유시 음악추천 기능이 제한될 수 있습니다
               </p>
@@ -59,7 +59,7 @@ export default function SongForm({ user }: { user: User | null }) {
           alt="Molody Logo"
           width={100}
           height={40}
-          className="mb-14"
+          className="hidden mb-14 lg:block"
         />
       </div>
     </div>
@@ -71,7 +71,7 @@ function SubmitButton({ user }: { user: User | null }) {
   return (
     <button
       type="submit"
-      className="bg-black mt-2 text-white px-2 py-3 w-4/5 rounded hover:bg-neutral-700 disabled:bg-neutral-400"
+      className="bg-black mt-2 text-white px-2 py-3 w-full rounded hover:bg-neutral-700 disabled:bg-neutral-400"
       disabled={pending || !user}
     >
       {pending ? "확인 중..." : user === null ? "로그인 후 이용 가능" : "확인"}

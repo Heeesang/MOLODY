@@ -29,7 +29,6 @@ export default async function SongList({ genre }: { genre?: string }) {
                                     width={106}
                                     height={60}
                                     className="rounded object-cover"
-                                    priority
                                 />
                                 <a
                                     href={song.youtube_url}

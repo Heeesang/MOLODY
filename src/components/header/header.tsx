@@ -32,7 +32,7 @@ export default async function Header() {
             {user ? (
               <div className="flex items-center">
                 <LogoutButton/>
-                <div className="pl-2">
+                <Link href="/mypage" className="pl-2">
                   <Image
                     src={user?.user_metadata.avatar_url}
                     alt="Profile"
@@ -40,7 +40,7 @@ export default async function Header() {
                     height={40}
                     className="rounded-full"
                   />
-                </div>
+                </Link>
               </div>
             ) : (
               <div className="flex items-center">

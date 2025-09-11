@@ -1,6 +1,6 @@
 import { getLatestSongs } from '@/lib/supabase/server';
-import { SongData } from '@/lib/supabase/song/songService';
 import { availableGenre } from '@/schemas/songSchema';
+import { SongData } from '@/types/song';
 import Image from 'next/image';
 import Link from 'next/link';
 

@@ -1,7 +1,7 @@
+import { SongData } from '@/types/song'
 import { createServerClient } from '@supabase/ssr'
 import { User } from '@supabase/supabase-js'
 import { cookies } from 'next/headers'
-import { SongData } from './song/songService'
 
 export async function createClient() {
   const cookieStore = await cookies()

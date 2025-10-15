@@ -7,8 +7,8 @@ interface MyPageContentProps {
 
 export default function MyPageContent({ songs }: MyPageContentProps) {
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-8">내가 등록한 노래</h1>
+    <div className="max-w-[1140px] mx-auto">
+      <h1 className="text-4xl font-bold mb-5 pt-24 text-neutral-700">내가 등록한 노래</h1>
       {songs && songs.length > 0 ? (
         <div className="grid grid-cols-1 gap-2 mt-4">
           {songs.map((song) => (

@@ -1,8 +1,8 @@
 import { getLatestSongs } from '@/lib/supabase/server';
 import { availableGenre } from '@/schemas/songSchema';
 import { SongData } from '@/types/song';
-import Image from 'next/image';
 import Link from 'next/link';
+import SongImage from './SongImage';
 
 export default async function SongList({ genre }: { genre?: string }) {
     const songs: SongData[] = await getLatestSongs(10, genre);
@@ -23,7 +23,7 @@ export default async function SongList({ genre }: { genre?: string }) {
                     songs.map((song) => (
                         <div key={song.video_id} className="flex items-center justify-between duration-100 hover:bg-neutral-200">
                             <div className="flex items-center space-x-4">
-                                <Image
+                                <SongImage
                                     src={song.thumbnail_url}
                                     alt={song.title}
                                     width={106}

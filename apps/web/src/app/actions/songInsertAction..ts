@@ -3,7 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { songSchema } from "@/schemas/songSchema";
 import { getYouTubeVideoInfo } from "@/lib/youtube/youtubeApi";
-import { SongData } from "@/lib/supabase/song/songService";
+import { SongData } from "@/types/song";
 import { createClient, getUser } from "@/lib/supabase/server";
 
 export async function insertSongAction(

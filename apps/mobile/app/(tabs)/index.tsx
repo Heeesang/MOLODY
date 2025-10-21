@@ -1,6 +1,5 @@
 import { Platform, StyleSheet } from 'react-native';
 
-import { HelloWave } from '@/components/hello-wave';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { Link } from 'expo-router';
@@ -10,8 +9,7 @@ export default function HomeScreen() {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <ThemedView style={styles.titleContainer}>
-        <ThemedText type="logo">MOLODY!</ThemedText>
-        <HelloWave />
+        <ThemedText type="logo">MOLODY</ThemedText>
       </ThemedView>
       <ThemedView style={styles.stepContainer}>
         <ThemedText type="subtitle">Step 1: Try it</ThemedText>
@@ -75,10 +73,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: 8,
+    marginHorizontal: 16
   },
   stepContainer: {
     gap: 8,
     marginBottom: 8,
+    marginHorizontal: 16
   },
   reactLogo: {
     height: 178,

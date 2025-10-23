@@ -1,13 +1,13 @@
-import { Platform, StyleSheet } from 'react-native';
+import { FONTS } from '@molody/core';
+import { ThemedText } from '@/components/themed-text';
+import { ThemedView } from '@/components/themed-view';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { StyleSheet } from 'react-native';
 import { useFonts } from 'expo-font';
 import { SplashScreen } from 'expo-router';
 import { useEffect } from 'react';
 import { SvgUri } from 'react-native-svg';
 import { Asset } from 'expo-asset';
-
-import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
-import { SafeAreaView } from 'react-native-safe-area-context';
 
 const molodyMobileSvgUri = Asset.fromModule(require('../../assets/images/molodyMobile.svg')).uri;
 
@@ -29,7 +29,7 @@ export default function HomeScreen() {
   return (
     <SafeAreaView style={styles.container}>
       <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title" style={{ fontFamily: 'Kanit-Bold' }}>
+        <ThemedText type="title" style={{ fontFamily: FONTS.KanitBold }}>
           MOLODY
         </ThemedText>
       </ThemedView>

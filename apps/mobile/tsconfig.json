@@ -3,6 +3,8 @@
   "compilerOptions": {
     "strict": true,
     "paths": {
+      "@molody/core": ["../core/src/index.js"],
+      "@molody/core/*": ["../core/src/*"],
       "@/*": [
         "./*"
       ]

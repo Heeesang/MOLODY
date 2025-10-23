@@ -27,7 +27,7 @@
     },
     "plugins": [
       "expo-router",
-      [
+        [
         "expo-splash-screen",
         {
           "image": "./assets/images/splash-icon.png",
@@ -37,6 +37,14 @@
           "dark": {
             "backgroundColor": "#000000"
           }
+        }
+      ],
+      [
+        "expo-font",
+        {
+          "fonts": [
+            "./assets/fonts/Kanit-Bold.ttf"
+          ]
         }
       ]
     ],

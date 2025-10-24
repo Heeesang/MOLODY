@@ -3,11 +3,12 @@
   "compilerOptions": {
     "strict": true,
     "paths": {
-      "@molody/core": ["../core/src/index.js"],
+      "@molody/core": ["../core/src/index.ts"],
       "@molody/core/*": ["../core/src/*"],
       "@/*": [
         "./*"
-      ]
+      ],
+      "@env": ["./declarations.d.ts"]
     }
   },
   "include": [

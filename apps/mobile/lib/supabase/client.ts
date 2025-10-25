@@ -1,12 +1,10 @@
 import 'react-native-url-polyfill/auto';
 import { createClient } from '@supabase/supabase-js';
-import { EXPO_PUBLIC_SUPABASE_URL, EXPO_PUBLIC_SUPABASE_ANON_KEY} from '@env';
 
-if (!EXPO_PUBLIC_SUPABASE_URL || !EXPO_PUBLIC_SUPABASE_ANON_KEY) {
-  throw new Error('Supabase URL or Anon Key is missing from .env file.');
-}
+const supabaseUrl = process.env.EXPO_PUBLIC_SUPABASE_URL;
+const supabaseAnonKey = process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY;
 
-export const supabase = createClient(EXPO_PUBLIC_SUPABASE_URL, EXPO_PUBLIC_SUPABASE_ANON_KEY, {
+export const supabase = createClient(supabaseUrl as string, supabaseAnonKey as string, {
   auth: {
     // In React Native, we need to use a custom storage provider.
     // We will use AsyncStorage.

@@ -2,6 +2,7 @@
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
     "strict": true,
+    "moduleResolution": "bundler",
     "paths": {
       "@molody/core": ["../core/src/index.ts"],
       "@molody/core/*": ["../core/src/*"],

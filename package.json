@@ -33,9 +33,9 @@
     "url": "https://github.com/Heeesang/MOLODY/issues"
   },
   "homepage": "https://github.com/Heeesang/MOLODY#readme",
-  "dependencies": {},
   "devDependencies": {
-    "@types/hammerjs": "^2.0.46"
+    "@types/hammerjs": "^2.0.46",
+    "supabase": "^2.53.6"
   },
   "resolutions": {
     "react": "19.1.0",

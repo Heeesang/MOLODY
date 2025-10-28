@@ -1,0 +1,6 @@
+{
+  "compilerOptions": {
+    "lib": ["deno.ns", "deno.window"],
+    "types": ["https://deno.land/x/supabase_deno_runtime@v1.0.0/lib/supabase_edge.d.ts"]
+  }
+}

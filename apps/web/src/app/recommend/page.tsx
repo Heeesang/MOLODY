@@ -1,12 +1,12 @@
 import RecommendContent from "@/components/contents/recommend/recommendContent";
 
-export default async function Recommend({ searchParams }: { searchParams: { genre?: string } }) {
-    const params = await searchParams;
-    const genre = params?.genre
+type RecommendPageProps = {
+  searchParams?: Promise<{ genre?: string }>;
+};
 
-    return (
-        <>
-            <RecommendContent genre={genre} />
-        </>
-    )
+export default async function RecommendPage({ searchParams }: RecommendPageProps) {
+  const resolvedParams = await searchParams;
+  const genre = resolvedParams?.genre;
+
+  return <RecommendContent genre={genre} />;
 }

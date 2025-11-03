@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "main": "src/index.ts",
   "private": true,
+  "scripts": {
+    "build": "tsc -p ."
+  },
   "types": "src/index.ts",
   "dependencies": {
     "@supabase/supabase-js": "^2.76.1"

@@ -1,23 +1,11 @@
 import { getLatestSongs } from '@/lib/supabase/server';
-import { availableGenre } from '@/schemas/songSchema';
 import { SongData } from '@/types/song';
-import Link from 'next/link';
 import SongImage from './SongImage';
 
 export default async function SongList({ genre }: { genre?: string }) {
     const songs: SongData[] = await getLatestSongs(10, genre);
     return (
         <div>
-            <div className="flex space-x-2 mb-4">
-                <Link href="/recommend">
-                    <button className={`px-3 py-1 rounded-lg text-sm ${!genre ? 'bg-neutral-700 text-white' : 'bg-neutral-200 text-neutral-700'}`}>전체</button>
-                </Link>
-                {availableGenre.map((g) => (
-                    <Link key={g} href={`/recommend?genre=${encodeURIComponent(g)}`}>
-                        <button className={`px-2 py-1 rounded-lg text-sm ${genre === g ? 'bg-neutral-700 text-white' : 'bg-neutral-200 text-neutral-700'}`}>{g}</button>
-                    </Link>
-                ))}
-            </div>
             <div className="grid grid-cols-1 gap-2 mt-4">
                 {songs.length > 0 ? (
                     songs.map((song) => (

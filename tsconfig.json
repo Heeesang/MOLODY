@@ -1,4 +1,8 @@
 {
-  "compilerOptions": {},
-  "extends": "expo/tsconfig.base"
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@molody/core/*": ["apps/core/src/*"]
+    }
+  }
 }

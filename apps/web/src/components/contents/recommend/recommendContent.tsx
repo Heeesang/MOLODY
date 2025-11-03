@@ -1,7 +1,8 @@
 import { Suspense } from 'react';
-import SongList from './songList.tsx/songList';
+import SongList from './songList/songList';
 import SongForm from './songForm/songForm';
 import { getUser } from '@/lib/supabase/server';
+import GenreSelector from './songList/GenreSelector';
 
 export default async function RecommendContent({ genre }: { genre?: string }) {
     const user = await getUser();
@@ -11,6 +12,7 @@ export default async function RecommendContent({ genre }: { genre?: string }) {
             <div className="flex flex-col-reverse mt-14 lg:flex-row max-w-[1140px] w-full h-full justify-between lg:mt-32 lg:space-x-8">
                 <div className="w-full my-10 lg:mt-0 lg:w-3/5 flex flex-col">
                     <h1 className="text-4xl font-bold mb-3 text-neutral-700">추천음악</h1>
+                    <GenreSelector currentGenre={genre} />
                     <Suspense fallback={<SkeletonLoader />}>
                         <SongList genre={genre} />
                     </Suspense>

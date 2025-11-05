@@ -15,7 +15,7 @@ export default function GenreSelector({ currentGenre }: { currentGenre?: string 
   }, [currentGenre]);
 
   const handleGenreChange = (genre: string | undefined) => {
-    setOptimisticGenre(genre); // Optimistically update local state
+    setOptimisticGenre(genre);
     startTransition(() => {
       const params = new URLSearchParams(searchParams.toString());
       if (genre) {

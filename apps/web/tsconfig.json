@@ -23,6 +23,6 @@
       "@molody/core/*": ["../../apps/core/src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/components/contents/recommend/songList"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.test.tsx", ".next/types/**/*.ts", "jest.setup.js"],
   "exclude": ["node_modules"]
 }

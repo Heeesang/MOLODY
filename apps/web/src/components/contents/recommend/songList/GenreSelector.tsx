@@ -28,7 +28,7 @@ export default function GenreSelector({ currentGenre }: { currentGenre?: string 
   };
 
   return (
-    <div className="flex space-x-2 mb-4">
+    <div className="flex space-x-2">
       <button
         onClick={() => handleGenreChange(undefined)}
         className={`px-3 py-1 rounded-lg text-sm ${!optimisticGenre ? 'bg-neutral-700 text-white' : 'bg-neutral-200 text-neutral-700'} ${isPending ? 'opacity-70 cursor-not-allowed' : ''}`}

@@ -5,7 +5,7 @@ import { useFormStatus } from "react-dom";
 import { availableGenre, Genre, genreColors } from "@/schemas/songSchema";
 import Image from "next/image";
 import { User } from "@supabase/supabase-js";
-import { insertSongAction } from "@/app/actions/songInsertAction.";
+import { insertSongAction } from "@/app/actions/songInsertAction";
 
 export default function SongForm({ user }: { user: User | null }) {
   const [state, formAction] = useActionState(insertSongAction, { error: null });

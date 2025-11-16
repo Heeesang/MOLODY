@@ -4,10 +4,11 @@ import { useActionState, useState } from "react";
 import { useFormStatus } from "react-dom";
 import { availableGenre, Genre, genreColors } from "@/schemas/songSchema";
 import Image from "next/image";
-import { User } from "@supabase/supabase-js";
 import { insertSongAction } from "@/app/actions/songInsertAction";
+import { useUserStore } from "@/store/userStore";
 
-export default function SongForm({ user }: { user: User | null }) {
+export default function SongForm() {
+  const { user } = useUserStore();
   const [state, formAction] = useActionState(insertSongAction, { error: null });
   const [selectedGenre, setSelectedGenre] = useState<Genre>("팝");
 
@@ -45,7 +46,7 @@ export default function SongForm({ user }: { user: User | null }) {
               </div>
               <input type="hidden" name="genre" value={selectedGenre} />
             </div>
-            <SubmitButton user={user} />
+            <SubmitButton />
             {state.error && <div className="text-red-500 mt-2">{state.error}</div>}
             <div className="w-full">
               <p className="text-xs text-gray-400 mt-4">
@@ -66,8 +67,10 @@ export default function SongForm({ user }: { user: User | null }) {
   );
 }
 
-function SubmitButton({ user }: { user: User | null }) {
+function SubmitButton() {
   const { pending } = useFormStatus();
+  const { user } = useUserStore();
+  
   return (
     <button
       type="submit"

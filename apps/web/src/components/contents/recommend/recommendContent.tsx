@@ -1,12 +1,9 @@
 import { Suspense } from 'react';
 import SongList from './songList/songList';
 import SongForm from './songForm/songForm';
-import { getUser } from '@/lib/supabase/server';
 import GenreSelector from './songList/GenreSelector';
 
 export default async function RecommendContent({ genre }: { genre?: string }) {
-    const user = await getUser();
-
     return (
         <div className="flex flex-col items-center justify-center w-full px-4">
             <div className="flex flex-col-reverse mt-14 lg:flex-row max-w-[1140px] w-full h-full justify-between lg:mt-32 lg:space-x-8">
@@ -18,7 +15,7 @@ export default async function RecommendContent({ genre }: { genre?: string }) {
                     </Suspense>
                 </div>
                 <div className="w-full lg:w-96 mt-8 lg:mt-0">
-                    <SongForm user={user} />
+                    <SongForm />
                 </div>
             </div>
         </div>

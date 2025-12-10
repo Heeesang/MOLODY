@@ -10,22 +10,22 @@ export default async function Header() {
   const user = await getUser();
 
   return (
-    <nav className="fixed w-full h-16 bg-white px-5 z-50">
+    <nav className="fixed w-full h-16 bg-background px-5 z-50">
       <div className="max-w-[1140px] h-full m-auto flex">
         <div className="flex h-full w-full items-center justify-between">
           <div>
             <Link href="/">
               <Image
-                src="/molody_logo.svg"
+                src="/MOLODY.svg"
                 alt="Molody Logo"
                 width={90}
                 height={30}
               />
             </Link>
           </div>
-          <div className="flex items-center text-neutral-500">
+          <div className="flex items-center text-foreground">
             <div className="mx-6">
-              <Link href="/recommend">
+              <Link href="/recommend" className="hover:text-primary">
                 음악 추천
               </Link>
             </div>

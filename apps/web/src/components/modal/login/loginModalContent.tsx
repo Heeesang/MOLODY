@@ -2,6 +2,7 @@
 
 import { User } from "@supabase/supabase-js";
 import Image from "next/image";
+import { Button } from "../../ui/button";
 
 interface LoginModalContentProps {
   user: User | null;
@@ -17,32 +18,32 @@ export default function LoginModalContent({
   onSubscribe,
 }: LoginModalContentProps) {
   return (
-    <form className="">
+    <form className="space-y-4">
       <div className="flex flex-col space-y-5">
         {user ? (
-          <button
+          <Button
             type="button"
             onClick={onSubscribe}
-            className="px-3 py-2.5 text-black font-medium border-2 rounded-lg flex text-lg items-center gap-5"
+            className="w-full bg-primary text-primary-foreground hover:bg-primary/80 text-lg font-medium border-2 border-primary rounded-lg flex items-center justify-center gap-5"
           >
             구독하기
-          </button>
+          </Button>
         ) : (
-          <button
+          <Button
             type="button"
             onClick={onLogin}
-            className="px-3 py-2.5 text-black font-medium border-2 rounded-lg flex text-lg items-center gap-5"
+            className="w-full py-6 bg-white text-black hover:bg-neutral-200 text-lg font-medium border-2 border-secondary rounded-lg flex items-center justify-center gap-5"
           >
-            <Image 
+            <Image
               src="./googleIcon.svg"
               alt="Google icon"
               width={24}
               height={24}
             />
             Google 계정으로 로그인
-          </button>
+          </Button>
         )}
-        {message && <p className="text-center mt-2">{message}</p>}
+        {message && <p className="text-center mt-2 text-muted-foreground">{message}</p>}
       </div>
     </form>
   );

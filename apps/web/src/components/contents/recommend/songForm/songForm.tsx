@@ -2,8 +2,15 @@
 
 import { useActionState, useState } from "react";
 import { useFormStatus } from "react-dom";
-import { availableGenre, Genre, genreColors } from "@/schemas/songSchema";
+import { availableGenre, Genre } from "@/schemas/songSchema";
 import Image from "next/image";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { insertSongAction } from "@/app/actions/songInsertAction";
 import { useUserStore } from "@/store/userStore";
 
@@ -28,22 +35,24 @@ export default function SongForm() {
             </div>
             <div className="w-full my-6">
               <p className="text-sm font-semibold mb-3 text-foreground">분위기 선택</p>
-              <div className="flex flex-wrap gap-2">
-                {availableGenre.map((genre) => (
-                  <button
-                    key={genre}
-                    type="button"
-                    onClick={() => setSelectedGenre(genre)}
-                    className={`px-3 py-1 rounded-lg text-sm font-normal border duration-200 
-                      ${genreColors[genre].base} 
-                      ${selectedGenre === genre ? `text-primary-foreground ${genreColors[genre].selected}` : 'text-muted-foreground'} 
-                      hover:text-primary-foreground ${user === null ? 'opacity-70 cursor-not-allowed' : ''}`}
-                    disabled={user === null}
-                  >
-                    {genre.charAt(0).toUpperCase() + genre.slice(1)}
-                  </button>
-                ))}
-              </div>
+              <Select
+                onValueChange={(value) => setSelectedGenre(value as Genre)}
+                defaultValue={selectedGenre}
+                disabled={user === null}
+              >
+                <SelectTrigger
+                  className={`w-full ${user === null ? "opacity-70 cursor-not-allowed" : ""}`}
+                >
+                  <SelectValue placeholder="분위기를 선택해주세요" />
+                </SelectTrigger>
+                <SelectContent>
+                  {availableGenre.map((genre) => (
+                    <SelectItem key={genre} value={genre}>
+                      {genre.charAt(0).toUpperCase() + genre.slice(1)}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
               <input type="hidden" name="genre" value={selectedGenre} />
             </div>
             <SubmitButton />

@@ -3,6 +3,7 @@
 import { availableGenre } from '@/schemas/songSchema';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState, useTransition } from 'react';
+import { Button } from '@/components/ui/button'; // Import Shadcn Button
 
 export default function GenreSelector({ currentGenre }: { currentGenre?: string }) {
   const router = useRouter();
@@ -28,23 +29,25 @@ export default function GenreSelector({ currentGenre }: { currentGenre?: string 
   };
 
   return (
-    <div className="flex space-x-2">
-      <button
+    <div className="flex flex-wrap gap-2"> {/* Changed space-x-2 to flex-wrap gap-2 */}
+      <Button
         onClick={() => handleGenreChange(undefined)}
-        className={`px-3 py-1 rounded-lg text-sm ${!optimisticGenre ? 'bg-neutral-700 text-white' : 'bg-neutral-200 text-neutral-700'} ${isPending ? 'opacity-70 cursor-not-allowed' : ''}`}
+        variant={!optimisticGenre ? "default" : "outline"} // Use Shadcn Button variants
+        className={`px-3 py-1 rounded-lg text-sm ${!optimisticGenre ? 'bg-primary text-primary-foreground' : 'bg-secondary text-secondary-foreground'} ${isPending ? 'opacity-70 cursor-not-allowed' : ''}`}
         disabled={isPending}
       >
         전체
-      </button>
+      </Button>
       {availableGenre.map((g) => (
-        <button
+        <Button
           key={g}
           onClick={() => handleGenreChange(g)}
-          className={`px-2 py-1 rounded-lg text-sm ${optimisticGenre === g ? 'bg-neutral-700 text-white' : 'bg-neutral-200 text-neutral-700'} ${isPending ? 'opacity-70 cursor-not-allowed' : ''}`}
+          variant={optimisticGenre === g ? "default" : "outline"} // Use Shadcn Button variants
+          className={`px-2 py-1 rounded-lg text-sm ${optimisticGenre === g ? 'bg-primary text-primary-foreground' : 'bg-secondary text-secondary-foreground'} ${isPending ? 'opacity-70 cursor-not-allowed' : ''}`}
           disabled={isPending}
         >
           {g}
-        </button>
+        </Button>
       ))}
     </div>
   );

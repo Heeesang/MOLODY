@@ -1,10 +1,15 @@
 import { Suspense } from 'react';
-import SongList from './songList/songList';
 import SongForm from './songForm/songForm';
 import GenreSelector from './songList/GenreSelector';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { getLatestSongs } from '@/lib/supabase/server';
+import PaginatedSongList from './songList/PaginatedSongList';
+
+const SONGS_PER_PAGE = 10;
 
 export default async function RecommendContent({ genre }: { genre?: string }) {
+    const initialSongs = await getLatestSongs(SONGS_PER_PAGE, 0, genre);
+
     return (
         <div className="flex flex-col items-center justify-center w-full px-4 py-8">
             <div className="flex flex-col-reverse lg:flex-row max-w-[1140px] w-full h-full justify-between lg:mt-20 lg:space-x-8">
@@ -15,7 +20,7 @@ export default async function RecommendContent({ genre }: { genre?: string }) {
                     <CardContent className="flex flex-col h-full">
                         <GenreSelector currentGenre={genre} />
                         <Suspense fallback={<SkeletonLoader />}>
-                            <SongList genre={genre} />
+                            <PaginatedSongList initialSongs={initialSongs} genre={genre} /> {/* Use PaginatedSongList */}
                         </Suspense>
                     </CardContent>
                 </Card>

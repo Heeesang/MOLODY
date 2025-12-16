@@ -1,5 +1,5 @@
 import { SongData } from '@/types/song'
-import { createServerClient } from '@supabase/ssr'
+import { createServerClient, CookieOptions } from '@supabase/ssr' // Import CookieOptions
 import { User } from '@supabase/supabase-js'
 import { cookies } from 'next/headers'
 
@@ -14,7 +14,7 @@ export async function createClient() {
         getAll() {
           return cookieStore.getAll()
         },
-        setAll(cookiesToSet) {
+        setAll(cookiesToSet: Array<{ name: string; value: string; options: CookieOptions }>) { // Explicitly type cookiesToSet
           try {
             cookiesToSet.forEach(({ name, value, options }) =>
               cookieStore.set(name, value, options)
@@ -39,7 +39,7 @@ export async function getUser(): Promise<User | null> {
   return user
 }
 
-export async function getLatestSongs(limit: number = 10, genre?: string, random: boolean = false): Promise<SongData[]> {
+export async function getLatestSongs(limit: number = 10, offset: number = 0, genre?: string, random: boolean = false): Promise<SongData[]> {
   const supabase = await createClient()
 
   if (random) {
@@ -57,7 +57,8 @@ export async function getLatestSongs(limit: number = 10, genre?: string, random:
     .from("songs")
     .select("video_id, title, thumbnail_url, youtube_url, genre")
     .order("created_at", { ascending: false })
-    .limit(limit);
+    .limit(limit)
+    .range(offset, offset + limit - 1); // Add range for offset
 
   if (genre) {
     query = query.eq('genre', genre);

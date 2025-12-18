@@ -55,7 +55,8 @@ export async function getLatestSongs(limit: number = 10, offset: number = 0, gen
 
   let query = supabase
     .from("songs")
-    .select("video_id, title, thumbnail_url, youtube_url, genre")
+    .select("video_id, title, thumbnail_url, youtube_url, genre, status") // Add status to select
+    .eq('status', 'approved') // Add this line
     .order("created_at", { ascending: false })
     .limit(limit)
     .range(offset, offset + limit - 1); // Add range for offset

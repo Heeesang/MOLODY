@@ -46,6 +46,7 @@ export async function insertSongAction(
             thumbnail_url: videoInfo.thumbnail,
             user_id: user.id,
             genre,
+            status: 'pending',
         };
 
         const { error } = await supabase

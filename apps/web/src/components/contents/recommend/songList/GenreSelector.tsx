@@ -3,7 +3,7 @@
 import { availableGenre } from '@/schemas/songSchema';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState, useTransition } from 'react';
-import { Button } from '@/components/ui/button'; // Import Shadcn Button
+import { Button } from '@/components/ui/button'
 
 export default function GenreSelector({ currentGenre }: { currentGenre?: string }) {
   const router = useRouter();
@@ -29,10 +29,10 @@ export default function GenreSelector({ currentGenre }: { currentGenre?: string 
   };
 
   return (
-    <div className="flex flex-wrap gap-2"> {/* Changed space-x-2 to flex-wrap gap-2 */}
+    <div className="flex flex-wrap gap-2">
       <Button
         onClick={() => handleGenreChange(undefined)}
-        variant={!optimisticGenre ? "default" : "outline"} // Use Shadcn Button variants
+        variant={!optimisticGenre ? "default" : "outline"}
         className={`px-3 py-1 rounded-lg text-sm ${!optimisticGenre ? 'bg-primary text-primary-foreground' : 'bg-secondary text-secondary-foreground'} ${isPending ? 'opacity-70 cursor-not-allowed' : ''}`}
         disabled={isPending}
       >
@@ -42,7 +42,7 @@ export default function GenreSelector({ currentGenre }: { currentGenre?: string 
         <Button
           key={g}
           onClick={() => handleGenreChange(g)}
-          variant={optimisticGenre === g ? "default" : "outline"} // Use Shadcn Button variants
+          variant={optimisticGenre === g ? "default" : "outline"}
           className={`px-2 py-1 rounded-lg text-sm ${optimisticGenre === g ? 'bg-primary text-primary-foreground' : 'bg-secondary text-secondary-foreground'} ${isPending ? 'opacity-70 cursor-not-allowed' : ''}`}
           disabled={isPending}
         >

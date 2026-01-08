@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import MyPageContent from "@/components/contents/myPage/myPageContent";
 import { getSongsByUserId } from "@/lib/supabase/song/songService";
 import { createClient, getUser } from "@/lib/supabase/server";

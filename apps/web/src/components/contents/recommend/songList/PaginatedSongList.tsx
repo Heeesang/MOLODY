@@ -29,7 +29,6 @@ export default function PaginatedSongList({ initialSongs, genre }: { initialSong
     setHasMore(initialSongs.length === SONGS_PER_PAGE);
   }, [genre, initialSongs]);
 
-
   return (
     <div>
       <div className="grid grid-cols-1 gap-2 mt-4">

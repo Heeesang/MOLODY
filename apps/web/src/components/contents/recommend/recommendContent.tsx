@@ -20,7 +20,7 @@ export default async function RecommendContent({ genre }: { genre?: string }) {
                     <CardContent className="flex flex-col h-full">
                         <GenreSelector currentGenre={genre} />
                         <Suspense fallback={<SkeletonLoader />}>
-                            <PaginatedSongList initialSongs={initialSongs} genre={genre} /> {/* Use PaginatedSongList */}
+                            <PaginatedSongList initialSongs={initialSongs} genre={genre} />
                         </Suspense>
                     </CardContent>
                 </Card>

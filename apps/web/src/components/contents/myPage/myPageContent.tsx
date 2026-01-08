@@ -1,5 +1,5 @@
 import { Song } from '@/types/song';
-import Image from 'next/image';
+import SongImage from '@/components/contents/recommend/songList/SongImage';
 
 interface MyPageContentProps {
   songs: Song[];
@@ -12,9 +12,9 @@ export default function MyPageContent({ songs }: MyPageContentProps) {
       {songs && songs.length > 0 ? (
         <div className="grid grid-cols-1 gap-2 mt-4">
           {songs.map((song) => (
-            <div key={song.id} className="flex items-center justify-between duration-100 hover:bg-neutral-200 p-2 rounded-md">
+            <div key={song.id} className="flex items-center justify-between duration-100 hover:bg-card-foreground/10 p-2 rounded-md">
               <div className="flex items-center space-x-4">
-                <Image
+                <SongImage
                   src={song.thumbnail_url}
                   alt={song.title}
                   width={106}
@@ -30,10 +30,21 @@ export default function MyPageContent({ songs }: MyPageContentProps) {
                   {song.title}
                 </a>
               </div>
-              <div className="mr-4">
+              <div className="flex items-center space-x-4 mr-4">
+                <span
+                  className={`px-2 py-1 rounded-sm text-xs font-semibold
+                    ${song.status === 'pending' ? 'bg-yellow-100 text-yellow-800' : ''}
+                    ${song.status === 'approved' ? 'bg-green-100 text-green-800' : ''}
+                    ${song.status === 'rejected' ? 'bg-red-100 text-red-800' : ''}
+                  `}
+                >
+                  {song.status === 'pending' && '대기중'}
+                  {song.status === 'approved' && '승인됨'}
+                  {song.status === 'rejected' && '거절됨'}
+                </span>
                 <span
                   key={song.genre}
-                  className="hidden px-2 py-1 md:block rounded-sm text-xs bg-neutral-100 text-neutral-400"
+                  className="hidden px-2 py-1 md:block rounded-sm text-xs bg-secondary text-secondary-foreground"
                 >
                   {song.genre}
                 </span>

@@ -88,6 +88,21 @@
   }
 }
 
+@keyframes wave-1 {
+  0%, 100% { height: 10%; }
+  50% { height: 80%; }
+}
+
+@keyframes wave-2 {
+  0%, 100% { height: 20%; }
+  50% { height: 90%; }
+}
+
+@keyframes wave-3 {
+  0%, 100% { height: 5%; }
+  50% { height: 70%; }
+}
+
 :root {
   --background: oklch(0.08 0.03 260); /* Deep dark background for light mode too, for consistency with dark-first approach */
   --foreground: oklch(0.95 0.005 240); /* Light text */
